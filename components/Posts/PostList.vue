@@ -1,8 +1,6 @@
 <template>
     <section class="post-list">
-        <PostPreview id="1" thumbnail="https://www.pixelstalk.net/wp-content/uploads/2016/06/HD-High-Tech-Wallpaper.jpg" title="Hello there!" previewText="This is my first post!" :is-admin="isAdmin" />
-        <PostPreview id="2" thumbnail="https://www.pixelstalk.net/wp-content/uploads/2016/06/HD-High-Tech-Wallpaper.jpg" title="Hello there - second!" previewText="This is my second post!" :is-admin="isAdmin" />
-        <PostPreview id="3" thumbnail="https://www.pixelstalk.net/wp-content/uploads/2016/06/HD-High-Tech-Wallpaper.jpg" title="Hello there - third!" previewText="This is my third post!" :is-admin="isAdmin" />
+        <PostPreview v-for="post in posts" :key="post.id" :id="post.id" :thumbnail="post.thumbnail" :title="post.title" :previewText="post.previewText" :is-admin="isAdmin" />
     </section>
 </template>
 
@@ -17,6 +15,10 @@
             isAdmin: {
                 type: Boolean,
                 default: false
+            },
+            posts: {
+                type: Array,
+                required: true
             }
         }
     }

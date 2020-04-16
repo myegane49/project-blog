@@ -3,7 +3,7 @@
     <section class="intro">
       <h1>Get the latest tech news</h1>
     </section>
-    <PostList />
+    <PostList :posts="loadedPosts" />
   </div>
 </template>
 
@@ -11,6 +11,48 @@
   import PostList from '@/components/Posts/PostList.vue'
 
   export default {
+    // data() {
+    //   return {
+    //     loadedPosts: []
+    //   }
+    // },
+
+    computed: {
+      loadedPosts() {
+        return this.$store.getters.loadedPosts
+      }
+    },
+
+    // asyncData(context) {
+    //   console.log(context)
+    //   return new Promise((resolve, reject) => {
+    //     setTimeout(() => {
+    //       resolve({
+    //         loadedPosts: [
+    //           {id: '1', title: 'First Post', previewText: 'This is our first post!', thumbnail: 'https://www.pixelstalk.net/wp-content/uploads/2016/06/HD-High-Tech-Wallpaper.jpg'},
+    //           {id: '2', title: 'Second Post', previewText: 'This is our second post!', thumbnail: 'https://www.pixelstalk.net/wp-content/uploads/2016/06/HD-High-Tech-Wallpaper.jpg'}
+    //         ]
+    //       })
+    //       // reject(new Error('an error occured'))
+    //     }, 1500)
+    //   }).then(data => data).catch(err => {
+    //     context.error(err)
+    //   })
+    // },
+
+    // asyncData(context, callback) {
+    //   console.log(context)
+    //   setTimeout(() => {
+    //     callback(null, {
+    //  // callback(new Error('error occured'), {
+    //       loadedPosts: [
+    //         {id: '1', title: 'First Post', previewText: 'This is our first post!', thumbnail: 'https://www.pixelstalk.net/wp-content/uploads/2016/06/HD-High-Tech-Wallpaper.jpg'},
+    //         {id: '2', title: 'Second Post', previewText: 'This is our second post!', thumbnail: 'https://www.pixelstalk.net/wp-content/uploads/2016/06/HD-High-Tech-Wallpaper.jpg'}
+    //       ]
+    //     })
+    //   }, 1500)
+    // },
+
     components: {
       PostList    
     }
