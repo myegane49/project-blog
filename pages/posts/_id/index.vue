@@ -15,21 +15,29 @@
 </template>
 
 <script>
+    import axios from 'axios';
+
     export default {
         asyncData(context) {
-            return new Promise((resolve, reject) => {
-                setTimeout(() => {
-                    resolve({
-                        loadedPost: {
-                            id: '1',
-                            title: `First Post (ID: ${context.route.params.id})`,
-                            previewText: 'This is our first post!',
-                            thumbnail: 'https://www.pixelstalk.net/wp-content/uploads/2016/06/HD-High-Tech-Wallpaper.jpg', author: 'Max',
-                            updatedDate: new Date(),
-                            content: 'Some dummy text for the content'}
-                    })
-                }, 1000)
-            })
+            // return new Promise((resolve, reject) => {
+            //     setTimeout(() => {
+            //         resolve({
+            //             loadedPost: {
+            //                 id: '1',
+            //                 title: `First Post (ID: ${context.route.params.id})`,
+            //                 previewText: 'This is our first post!',
+            //                 thumbnail: 'https://www.pixelstalk.net/wp-content/uploads/2016/06/HD-High-Tech-Wallpaper.jpg', author: 'Max',
+            //                 updatedDate: new Date(),
+            //                 content: 'Some dummy text for the content'}
+            //         })
+            //     }, 1000)
+            // })
+
+            return axios.get(`https://nuxt-blog-a63f2.firebaseio.com/posts/${context.params.id}.json`).then(res => {
+                return {
+                    loadedPost: res.data
+                }
+            }).catch(err => context.error(err));
         }
     }
 </script>
