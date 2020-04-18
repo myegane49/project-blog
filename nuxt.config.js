@@ -1,15 +1,16 @@
 
 export default {
   mode: 'universal',
+  // mode: 'spa',
   /*
   ** Headers of the page
   */
   head: {
-    title: process.env.npm_package_name || '',
+    title: 'WD Blog',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+      { hid: 'description', name: 'description', content: 'My cool development blog' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -19,16 +20,25 @@ export default {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff' },
+  loading: { color: '#fa923f' },
+  // loading: { color: '#fa923f', failedColor: 'yellow', height: '4px', duration: 5000 },
+  // loading: false,
+  // loadingIndicator: {
+  //   name: 'circle',
+  //   color: '#fa923f'
+  // },
   /*
   ** Global CSS
   */
   css: [
+      '~assets/styles/main.css'
   ],
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
+    '~plugins/core-components.js',
+    '~plugins/date-filter.js'
   ],
   /*
   ** Nuxt.js dev-modules
@@ -39,7 +49,12 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
+    '@nuxtjs/axios'
   ],
+  axios: {
+    baseURL: process.env.BASE_URL || 'https://nuxt-blog-a63f2.firebaseio.com',
+    // credentials: false
+  },
   /*
   ** Build configuration
   */
@@ -49,5 +64,29 @@ export default {
     */
     extend (config, ctx) {
     }
+  },
+  // dev: true,
+  env: {
+    baseUrl: process.env.BASE_URL || 'https://nuxt-blog-a63f2.firebaseio.com'
+  },
+  // generate: {
+
+  // },
+  // rootDir: '/my-app/',
+  router: {
+    // base: '/my-app/',
+    // extendRoutes(routes, resolve) {
+    //   routes.push({
+    //     path: '*',
+    //     component: resolve(__dirname + 'pages/index.vue')
+    //   })
+    // },
+    linkActiveClass: 'active'
+  },
+  // srcDir: 'client-app/',
+  // transition: 'fade'
+  transition: {
+    name: 'fade',
+    mode: 'out-in'
   }
 }

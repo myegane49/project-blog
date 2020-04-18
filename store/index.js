@@ -33,21 +33,29 @@ const createStore = () => {
                 //     }, 1000)
                 // })
 
-                return axios.get('https://nuxt-blog-a63f2.firebaseio.com/posts.json').then(res => {
+                // return axios.get(process.env.baseUrl + '/posts.json').then(res => {
+                return asyncContext.app.$axios.$get('/posts.json').then(res => {
                     const postsArray = []
-                    for (let key in res.data) {
-                        postsArray.push({...res.data[key], id: key})
+                    // for (let key in res.data) {
+                    //     postsArray.push({...res.data[key], id: key})
+                    for (let key in res) {
+                        postsArray.push({...res[key], id: key})
                     }
                     context.commit('setPosts', postsArray)
-                }).catch(err => context.error(err));
+                }).catch(err => { 
+                    context.error(err)
+                    // console.log(err)
+                });
             },
             setPosts(context, posts) {
                 context.commit('setPosts', posts)
             },
             addPost(context, post) {
                 const createdPost = {...post, updatedDate: new Date()}
-                return axios.post('https://nuxt-blog-a63f2.firebaseio.com/posts.json', createdPost).then(result => {
-                    context.commit('addPost', {...createdPost, id: result.data.name})
+                // return axios.post('https://nuxt-blog-a63f2.firebaseio.com/posts.json', createdPost).then(result => {
+                return this.$axios.$post('https://nuxt-blog-a63f2.firebaseio.com/posts.json', createdPost).then(result => {
+                    // context.commit('addPost', {...createdPost, id: result.data.name})
+                    context.commit('addPost', {...createdPost, id: result.name})
                 }).catch(err => {
                     console.log(err)
                 })

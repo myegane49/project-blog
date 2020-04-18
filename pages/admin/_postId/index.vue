@@ -23,7 +23,7 @@
             }
         },
         asyncData(context) {
-            return axios.get(`https://nuxt-blog-a63f2.firebaseio.com/posts/${context.params.postId}.json`).then(res => {
+            return axios.get(`${process.env.baseUrl}/posts/${context.params.postId}.json`).then(res => {
                 return {
                     loadedPost: {...res.data, id: context.params.postId}
                 }

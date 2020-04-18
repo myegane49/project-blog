@@ -19,8 +19,8 @@
 </template>
 
 <script>
-    import AppButton from '~/components/UI/AppButton'
-    import AppControlInput from '~/components/UI/AppControlInput'
+    // import AppButton from '~/components/UI/AppButton'
+    // import AppControlInput from '~/components/UI/AppControlInput'
 
     export default {
         props: {
@@ -48,9 +48,9 @@
                 this.$router.push('/admin')
             }
         },
-        components: {
-            AppButton,
-            AppControlInput
-        }
+        // components: {
+        //     AppButton,
+        //     AppControlInput
+        // }
     }
 </script>

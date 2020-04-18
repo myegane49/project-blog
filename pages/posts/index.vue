@@ -5,12 +5,12 @@
 </template>
 
 <script>
-    import PostList from '@/components/Posts/PostList.vue'
+    // import PostList from '@/components/Posts/PostList.vue'
 
     export default {
-        components: {
-            PostList
-        },
+        // components: {
+        //     PostList
+        // },
         
         // fetch(context) {
         //     if (context.store.state.loadedPosts.length > 0) {
