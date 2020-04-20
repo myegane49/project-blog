@@ -19,6 +19,12 @@
 
     export default {
         asyncData(context) {
+            if (context.payload) {
+                return {
+                    loadedPost: context.payload.postData
+                }
+            }
+
             // return new Promise((resolve, reject) => {
             //     setTimeout(() => {
             //         resolve({

@@ -1,3 +1,5 @@
+const bodyParser = require('body-parser')
+const axios = require('axios')
 
 export default {
   mode: 'universal',
@@ -90,5 +92,35 @@ export default {
   transition: {
     name: 'fade',
     mode: 'out-in'
+  },
+  serverMiddleware: [
+    bodyParser.json(),
+    '~/api'
+  ],
+  generate: {
+    routes: function() {
+      // return [
+      //   '/posts/-M52X1YMWUarcx3KlHCp'
+      // ]
+
+      // return axios.get('https://nuxt-blog-a63f2.firebaseio.com/posts.json').then(res => {
+      //   const routes = []
+      //   for (let key in res.data) {
+      //     routes.push('/posts/' + key)
+      //   }
+      //   return routes
+      // })
+
+      return axios.get('https://nuxt-blog-a63f2.firebaseio.com/posts.json').then(res => {
+        const routes = []
+        for (let key in res.data) {
+          routes.push({
+            route: '/posts/' + key,
+            payload: {postData: res.data[key]}
+          })
+        }
+        return routes
+      })
+    }
   }
 }
