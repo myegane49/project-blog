@@ -58,7 +58,8 @@
             loadedPosts() {
                 return this.$store.getters.loadedPosts
             }
-        }
+        },
+        middleware: 'log'
     }
 </script>
 

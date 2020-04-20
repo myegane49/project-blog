@@ -27,7 +27,8 @@
                     this.$router.push('/admin')
                 })
             }
-        }
+        },
+        middleware: ['check-auth', 'auth']
     }
 </script>
 

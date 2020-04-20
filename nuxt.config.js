@@ -67,7 +67,8 @@ export default {
   },
   // dev: true,
   env: {
-    baseUrl: process.env.BASE_URL || 'https://nuxt-blog-a63f2.firebaseio.com'
+    baseUrl: process.env.BASE_URL || 'https://nuxt-blog-a63f2.firebaseio.com',
+    fbAPIKey: 'AIzaSyBP97Nk9nNwhcynT5XGLZkc5AP6HYUklhY'
   },
   // generate: {
 
@@ -81,7 +82,8 @@ export default {
     //     component: resolve(__dirname + 'pages/index.vue')
     //   })
     // },
-    linkActiveClass: 'active'
+    // linkActiveClass: 'active',
+    // middleware: 'log'
   },
   // srcDir: 'client-app/',
   // transition: 'fade'

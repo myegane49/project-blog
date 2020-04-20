@@ -19,7 +19,8 @@
     components: {
       TheHeader,
       TheSidenav
-    }
+    },
+    // middleware: 'log'
   }
 </script>
 
