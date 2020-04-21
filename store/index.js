@@ -88,17 +88,17 @@ const createStore = () => {
                     localStorage.setItem('expirationDate', new Date().getTime() + Number.parseInt(result.expiresIn) * 1000)
                     Cookie.set('jwt', result.idToken)
                     Cookie.set('expirationDate', new Date().getTime() + Number.parseInt(result.expiresIn) * 1000)
-                    context.dispatch(setLogoutTimer, result.expiresIn * 1000)
+                    // context.dispatch(setLogoutTimer, result.expiresIn * 1000)
                     return this.$axios.$post('http://localhost:3000/api/track-data', {data: 'Authenticated!'})
                 }).catch(err => {
                     console.log(err)
                 })
             },
-            setLogoutTimer(context, duration) {
-                setTimeout(() => {
-                    context.dispatch('logout')
-                }, duration);
-            },
+            // setLogoutTimer(context, duration) {
+            //     setTimeout(() => {
+            //         context.dispatch('logout')
+            //     }, duration);
+            // },
             initAuth(context, req) {
                 let token, expirationDate;
                 if (req) {
@@ -127,8 +127,10 @@ const createStore = () => {
                 context.commit('clearToken')
                 Cookie.remove('jwt')
                 Cookie.remove('expirationDate')
-                localStorage.removeItem('token')
-                localStorage.removeItem('expirationDate')
+                if (process.client) {
+                    localStorage.removeItem('token')
+                    localStorage.removeItem('expirationDate')
+                }
             }
         },
         getters: {
